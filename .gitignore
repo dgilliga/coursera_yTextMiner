@@ -1,0 +1,6 @@
+/lib/
+/data/
+/.idea/
+/.settings/
+/out/
+.DS_Store
