@@ -4,3 +4,4 @@
 /.settings/
 /out/
 .DS_Store
+/target/

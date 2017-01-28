@@ -13,7 +13,13 @@ import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 /**
- * @author Reinald Kim Amplayo & Min Song
+ * <h1>Downloads twitter streams and stores to a file</h1>
+ * Streams to a file until the process is killed.
+ * Uses env variables as auth
+ *
+ * @author Reinald Kim Amplayo & Min Song (modified by Darren Gilligan)
+ * @version 1.01
+ * @since   2016-01-28
  */
 
 public class TwitterDataCrawler {
@@ -25,7 +31,7 @@ public class TwitterDataCrawler {
                 .setOAuthConsumerSecret(System.getenv("TwitterConsumerSecret"))
                 .setOAuthAccessToken(System.getenv("TwitterAccessToken"))
                 .setOAuthAccessTokenSecret(System.getenv("TwitterAccessTokenSecret"));
-        long start = System.currentTimeMillis();
+        final long start = System.currentTimeMillis();
         StatusListener listener = new StatusListener() {
             public void onStatus(Status status) {
                 PrintWriter printer;
@@ -54,19 +60,18 @@ public class TwitterDataCrawler {
                 ex.printStackTrace();
             }
 
-            @Override
             public void onDeletionNotice(StatusDeletionNotice arg0) {
                 // TODO Auto-generated method stub
 
             }
 
-            @Override
+
             public void onScrubGeo(long arg0, long arg1) {
                 // TODO Auto-generated method stub
 
             }
 
-            @Override
+
             public void onStallWarning(StallWarning arg0) {
                 // TODO Auto-generated method stub
 
