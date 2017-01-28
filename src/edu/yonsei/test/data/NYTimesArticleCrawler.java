@@ -44,6 +44,7 @@ public class NYTimesArticleCrawler {
         try {
 
             Document doc = Jsoup.connect(final_web_urls.get(0)).get();
+            System.out.println(final_web_urls.get(0));
             Elements texts = doc.getElementsByClass("story-body-text");
 
             for (Element text : texts) {
