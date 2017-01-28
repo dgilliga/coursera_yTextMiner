@@ -22,7 +22,7 @@ import com.jayway.jsonpath.JsonPath;
  *
  * @author Reinald Kim Amplayo & Min Song (modified by Darren Gilligan)
  * @version 1.01
- * @since   2016-01-28
+ * @since 2016-01-28
  */
 
 public class NYTimesArticleCrawler {
@@ -35,18 +35,15 @@ public class NYTimesArticleCrawler {
 
         // Need to extract the urls and format them
         ArrayList<String> web_urls = JsonPath.read(new JSONObject(s.nextLine()).toString(), "$..web_url");
-        ArrayList<String> final_web_urls = new ArrayList<String>();
+        ArrayList<String> final_web_urls = new ArrayList<>();
 
-        web_urls.forEach((url) -> {
-            final_web_urls.add(url.replaceAll("\\\\", ""));
-        });
+        web_urls.forEach((url) -> final_web_urls.add(url.replaceAll("\\\\", "")));
 
 
         // Get the article text of first url and store it.
-        String url = final_web_urls.get(0);
         try {
 
-            Document doc = Jsoup.connect(url).get();
+            Document doc = Jsoup.connect(final_web_urls.get(0)).get();
             Elements texts = doc.getElementsByClass("story-body-text");
 
             for (Element text : texts) {
